@@ -7,8 +7,14 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +22,13 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton btnMenu;
     DrawerLayout mDrawer;
+    //
+    ExpandableListView mExpandableListView;
+    ExpandableListAdapter mExpandableListAdapter;
 
+    List<String> list_group;
+    HashMap<String, List<String>> list_children;
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        mExpandableListAdapter = new CustomExpandableListViewAdapter(this, list_group,list_children);
+        mExpandableListView.setAdapter(mExpandableListAdapter);
     }
 
     private void typcast_my_object() {
@@ -49,5 +64,9 @@ public class MainActivity extends AppCompatActivity {
         mViewpager=findViewById(R.id.viewPager);
         btnMenu=findViewById(R.id.btn_menu);
         mDrawer=findViewById(R.id.mDrawer);
+
+        mExpandableListView = findViewById(R.id.expandable_listview);
+        list_children= ExpandableListData.getData();
+        list_group = new ArrayList<String>(list_children.keySet());
     }
 }

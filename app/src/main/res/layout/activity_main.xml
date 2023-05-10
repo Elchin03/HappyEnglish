@@ -28,11 +28,12 @@
             android:src="@drawable/menu"
             android:contentDescription="TODO" />
 
+
     </FrameLayout>
 
 
 
-    <ListView
+    <ExpandableListView
         android:id="@+id/expandable_listview"
         android:layout_width="200dp"
         android:layout_height="match_parent"
@@ -40,7 +41,8 @@
         android:background="#CB899791"
         android:dividerHeight="0.3dp"
         android:divider="#CB899791"
-        android:entries="@array/headings"
+        android:indicatorLeft="?android:attr/expandableListPreferredChildIndicatorLeft"
+
         />
 
 
